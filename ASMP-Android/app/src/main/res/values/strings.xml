@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ASMP</string>
+    <string name="title_monitoring">Monitoring</string>
+    <string name="title_controlling">Controlling</string>
+    <string name="channel_name">ASMP_Channel</string>
+    <string name="channel_description">Warning</string>
+</resources>

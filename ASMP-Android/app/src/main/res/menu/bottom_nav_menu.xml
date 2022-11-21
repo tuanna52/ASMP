@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_monitoring"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_monitoring" />
+
+    <item
+        android:id="@+id/navigation_controlling"
+        android:icon="@drawable/ic_toys_black_24dp"
+        android:title="@string/title_controlling" />
+
+</menu>

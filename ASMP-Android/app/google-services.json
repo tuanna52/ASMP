@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "326814583362",
+    "firebase_url": "https://asmp-uet.firebaseio.com",
+    "project_id": "asmp-uet",
+    "storage_bucket": "asmp-uet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:326814583362:android:e8f5364193fa212ecfbbdb",
+        "android_client_info": {
+          "package_name": "com.example.asmp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "326814583362-ubrtda8l0b3ht74is3ghmqc87hucl846.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Dp-0AKei40lDGQSNSLetXmIGmYOESOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "326814583362-ubrtda8l0b3ht74is3ghmqc87hucl846.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
