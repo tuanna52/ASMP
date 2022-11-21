@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Automation System for Mushroom Production</title>
+
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- App Styling -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" type="text/css" href="styles/font/flaticon.css">
+
+  </head>
+
+  <body>
+    <div class="sidetab">
+      <div class="sidetap-top">
+        <img src="images/mushroom.png" height="45px" width="45px" style="margin: auto auto auto 25px">
+        <p style="color: white; font-family: forte; font-size: 35px; color: #5867dd; margin: auto 80px auto auto;">ASMP</p>
+      </div>
+      <div class="sidetap-body">
+        <button class="tablinks" onclick="selectRoom(event, 'Room 1')" id="defaultOpen">
+          <span class="circle-bullet">&#8226;</span>
+          Room 1
+        </button>
+        <button class="tablinks" onclick="selectRoom(event, 'Room 2')">
+          <span class="circle-bullet">&#8226;</span>
+          Room 2
+        </button>
+        <button class="tablinks" onclick="selectRoom(event, 'Room 3')">
+          <span class="circle-bullet">&#8226;</span>
+          Room 3
+        </button>
+      </div>
+      <div class="sidetap-bottom">
+        <img src="images/uet.png" height="32px" width="32px" style="margin-right: 15px;">
+        <p style="color: #5867dd; font-family: forte; font-size: 28px;">VNU-UET</p>
+        <img src="images/vnu.png" height="32px" width="32px" style="margin-left: 15px;">
+      </div>
+    </div>
+    <div class="main">
+      <div class="main-header">
+        <div style="position: absolute; left: 16px; top: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%); color: #5867dd; background-color: #f0f3ff; height: 30px; width: 90px;">
+          <p id="current-room" style="font-size: 20px; font-family: Arial, Helvetica, sans-serif; margin: 0; position: absolute; top: 50%; left: 50%; -ms-transform: translate(-50%, -50%); transform:  translate(-50%, -50%); width: 100%;">Room 1</p>
+        </div>
+        <div class="notification-bell" id="noti-bell" onmouseover="calAvr()">
+          <b><span class="flaticon-notification"></span></b>
+          <div class="dropdown-content">
+            <a href="#" style="color: #fa7ba5;">Average Temperature: <span id="avr-temp"></span> °C</a>
+            <a href="#" style="color: #21ecec;">Average Humidity: <span id="avr-humid"></span> %</a>
+            <a href="#" style="color: #21ec65;">Average CO2: <span id="avr-co2"></span> ppm</a>
+            </div>
+        </div>
+        <div style="position: absolute; right: 25px; top: 50%; -ms-transform: translateY(-50%); transform: translateY(-50%);">
+          <p style="margin: 0px; font-size: 20px; font-family: Arial, Helvetica, sans-serif;">Automation System for Mushroom Production</p>
+        </div>
+      </div>
+      <div class="main-body">
+        <p style="font-family: Arial, Helvetica, sans-serif; color: #595d6e; font-size: 23px; margin-bottom: 0;">Monitoring</p>
+        <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; margin-top: 4px; margin-bottom: 23px; color: grey;">3 Indexes</p>
+        <div class="monitoring-container">
+          <div class="monitoring-temperature">
+            <div>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #fff; font-size: 50px; margin: 15px 100px 0 0; float: right;"><span id="temp">0</span>°C</p>
+              <img src="images/temperature.png" height="64px" width="64px" style="padding: 10px 0px 20px 78px; position: relative; top: 10px;">
+            </div>
+            <p style="float: right; font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 16px; margin: 0; position: relative; bottom: 30px; right: 100px">Temperature</p>
+            <div style="border-top-color: white; border-top-style: solid; color: white;">
+              <p style="font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 10px 0 10px 0; position: relative; left: 100px;"><span class="flaticon-clock"></span>&nbsp;&nbsp;&nbsp;Update: <span class="timestamp">0000/00/00 | 00:00:00</span></p>
+            </div>
+          </div>
+          <div class="monitoring-humidity">
+            <div>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #fff; font-size: 50px; margin: 15px 100px 0 0; float: right;"><span id="humid">0</span>%</p>
+              <img src="images/humidity.png" height="64px" width="64px" style="padding: 10px 0px 20px 78px; position: relative; top: 10px;">
+            </div>
+            <p style="float: right; font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 16px; margin: 0; position: relative; bottom: 30px; right: 100px;">Humidity</p>
+            <div style="border-top-color: white; border-top-style: solid; color: white;">
+              <p style="font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 10px 0 10px 0; position: relative; left: 100px;"><span class="flaticon-clock"></span>&nbsp;&nbsp;&nbsp;Update: <span class="timestamp">0000/00/00 | 00:00:00</span></p>
+            </div>
+          </div>
+          <div class="monitoring-co2">
+            <div>
+              <p style="font-family: Arial, Helvetica, sans-serif; font-weight: bold; color: #fff; font-size: 35px; margin: 15px 75px 0 0; float: right;"><span id="co2" style="font-size: 50px;">0</span> ppm</p>
+              <img src="images/co2.png" height="64px" width="64px" style="padding: 10px 0px 20px 78px; position: relative; top: 10px;">
+            </div>
+            <p style="float: right; font-family: Arial, Helvetica, sans-serif; color: #fff; font-size: 16px; margin: 0 75px 0 0; position: relative; bottom: 30px;">CO2</p>
+            <div style="border-top-color: white; border-top-style: solid; color: white;">
+              <p style="font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 10px 0 10px 0; position: relative; left: 100px;"><span class="flaticon-clock"></span>&nbsp;&nbsp;&nbsp;Update: <span class="timestamp">00/00/00 | 00:00:00</span></p>
+            </div>
+          </div>
+        </div>
+        <p style="font-family: Arial, Helvetica, sans-serif; color: #595d6e; font-size: 23px; margin-bottom: 2px;">Graph</p>
+        <span class="day-month-year" id="day-observation" onclick="selectTypeOfObs(event, this)">Day</span>
+        <span class="day-month-year" id="month-observation" onclick="selectTypeOfObs(event, this)">Month</span>
+        <span class="day-month-year" id="year-observation" onclick="selectTypeOfObs(event, this)">Year</span>
+        <div class="chart-container">
+          <canvas id="chart-3" style="height: 100%; width: 100%;"></canvas>
+        </div>
+        <p style="font-family: Arial, Helvetica, sans-serif; color: #595d6e; font-size: 23px; margin-bottom: 23px;">Control</p>
+        <div class="control-container">
+          <div class="control-element">
+            <div class="element-header">
+              <span style="font-family: Arial, Helvetica, sans-serif; font-size: 25px; color: #5867dd; background-color: #f0f3ff; margin: 0; padding: 5px;">Temperature Control</span>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 20px 30px 10px 0">Automatic</span>
+              <label class="switch">
+                <input type="checkbox" id="temp-auto" onchange="autoTemp()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="set-point">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-top-left-radius: 4px; border-bottom-left-radius: 4px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">Set Point</p>
+              </div>
+              <input id="temp-setpoint" style="font-size: 15px; color: #595d6e; background-color: inherit; height: 28px; width: 50px; padding: 0; margin: 1px; border: none; text-align: center;">
+              <button id = "temp-set-button" onclick="setPointClicked(this)">&darr;</button>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 30px 55px 10px 0">Manual</span>
+              <label class="switch">
+                <input type="checkbox" id="temp-man" onchange="manTemp()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="actuator" style="margin-bottom: 5px">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-radius: 4px; margin-right: 50px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">Heater</p>
+              </div>
+              <div class="checkbox-container">
+                <input id="heater" type="checkbox" onchange="actuatorToggle(this)">
+              </div>
+            </div>
+            <div class="actuator" style="margin-top: 5px;">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-radius: 4px; margin-right: 50px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">Cooler</p>
+              </div>
+              <div class="checkbox-container">
+                <input id="cooler" type="checkbox" onchange="actuatorToggle(this)">
+              </div>
+            </div>
+          </div>
+          <div class="control-element">
+            <div class="element-header">
+              <span style="font-family: Arial, Helvetica, sans-serif; font-size: 25px; color: #5867dd; background-color: #f0f3ff; margin: 0; padding: 5px;">Humidity Control</span>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 20px 30px 10px 0">Automatic</span>
+              <label class="switch">
+                <input type="checkbox" id="humid-auto" onchange="autoHumid()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="set-point">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-top-left-radius: 4px; border-bottom-left-radius: 4px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">Set Point</p>
+              </div>
+              <input id="humid-setpoint" style="font-size: 15px; color: #595d6e; background-color: inherit; height: 28px; width: 50px; padding: 0; margin: 1px; border: none; text-align: center;">
+              <button id = "humid-set-button" onclick="setPointClicked(this)">&darr;</button>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 30px 55px 10px 0">Manual</span>
+              <label class="switch">
+                <input type="checkbox" id="humid-man" onchange="manHumid()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="actuator" style="margin-bottom: 5px">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-radius: 4px; margin-right: 50px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">Pump</p>
+              </div>
+              <div class="checkbox-container">
+                <input id="bumper" type="checkbox" onchange="actuatorToggle(this)">
+              </div>
+            </div>
+          </div>
+          <div class="control-element">
+            <div class="element-header">
+              <span style="font-family: Arial, Helvetica, sans-serif; font-size: 25px; color: #5867dd; background-color: #f0f3ff; margin: 0; padding: 5px;">CO2 Control</span>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 20px 30px 10px 0">Automatic</span>
+              <label class="switch">
+                <input type="checkbox" id="co2-auto" onchange="autoCO2()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="set-point">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-top-left-radius: 4px; border-bottom-left-radius: 4px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">Set Point</p>
+              </div>
+              <input id="co2-setpoint" style="font-size: 15px; color: #595d6e; background-color: inherit; height: 28px; width: 50px; padding: 0; margin: 1px; border: none; text-align: center;">
+              <button id = "co2-set-button" onclick="setPointClicked(this)">&darr;</button>
+            </div>
+            <div>
+              <span style="display:inline-block; font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; margin: 30px 55px 10px 0">Manual</span>
+              <label class="switch">
+                <input type="checkbox" id="co2-man" onchange="manCO2()">
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div class="actuator" style="margin-bottom: 5px">
+              <div style="display: inline-block; height: 100%; width: 70px; background-color: #5867ff; border-radius: 4px; margin-right: 50px;">
+                <p style="color: white; font-size: 15px; margin: 6.5px 0 6.5px 0; text-align: center;">Fan</p>
+              </div>
+              <div class="checkbox-container">
+                <input id="fan" type="checkbox" onchange="actuatorToggle(this)">
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/__/firebase/7.10.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.10.0/firebase-auth.js"></script>
+    <script src="/__/firebase/7.10.0/firebase-storage.js"></script>
+    <script src="/__/firebase/7.10.0/firebase-messaging.js"></script>
+    <script src="/__/firebase/7.10.0/firebase-firestore.js"></script>
+    <script src="/__/firebase/7.10.0/firebase-performance.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script src="scripts/chart/chart.js/dist/Chart.min.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
